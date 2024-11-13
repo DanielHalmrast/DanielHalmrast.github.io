@@ -1,0 +1,115 @@
+html, body {
+    /*display: flex;
+    align-items: center;
+    justify-content: center;*/
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    min-width: 780px;
+
+    background-color: #ffffff;
+}
+
+.wrapper {
+    background-color: #ffffff;
+
+    max-width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile {
+    max-width:100%;
+    display: flex;
+    flex-direction: row;
+    background-color: #003660;
+    color: #ffffff;
+}
+
+.body {
+    max-width: 100%;
+    display: flex;
+    margin: 20px;
+}
+
+.left, .right {
+
+    margin: 5px;
+    max-width: 45%;
+    flex: 1;
+    display: inline-block;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    vertical-align: top;
+}
+
+.profile .left, .profile .right {
+    display: flex;
+    max-width:50%;
+}
+
+.content {
+    padding: 20px;
+    margin: 40px;
+    margin-left: 60px;
+    margin-right: 80px;
+}
+
+/* Navigation Stuff */
+
+nav {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    background-color: #febc11;
+    box-shadow: 0 0 10px 0 black;
+}
+
+nav * {
+    display: inline-block;
+}
+
+nav li {
+    padding:20px;
+}
+
+nav li a {
+    color: #3d4952;
+    text-decoration: none;
+    text-align: center;
+}
+
+nav .active {
+    background-color: #003660;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* the header loaded in is expected to be 490px in height
+ * so we will make the placeholder the same size */
+#header-placeholder {
+    height: 490px;
+    background-color: #003660;
+}
+
+
+.pic {
+    display: block;
+    align-self: center;
+    width:100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.content .image-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.content .image-container figure {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
