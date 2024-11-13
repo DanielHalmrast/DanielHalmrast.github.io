@@ -1,3 +1,9 @@
+:root {
+    --lc-maroon: #822433;
+    --lc-gray: #a2998b;
+    --lc-lightgray: #e8e6e2;
+}
+
 html, body {
     /*display: flex;
     align-items: center;
@@ -7,11 +13,11 @@ html, body {
     padding: 0px;
     min-width: 780px;
 
-    background-color: #ffffff;
+    background-color: var(--lc-lightgray);
 }
 
 .wrapper {
-    background-color: #ffffff;
+    background-color: var(--lc-lightgray);
 
     max-width:100%;
     display: flex;
@@ -23,8 +29,9 @@ html, body {
     max-width:100%;
     display: flex;
     flex-direction: row;
-    background-color: #003660;
-    color: #ffffff;
+    /*background-color: #003660;*/
+    background-color: var(--lc-maroon);
+    color: var(--lc-lightgray);
 }
 
 .body {
@@ -63,7 +70,7 @@ nav {
     height: 80px;
     display: flex;
     align-items: center;
-    background-color: #febc11;
+    background-color: var(--lc-gray);
     box-shadow: 0 0 10px 0 black;
 }
 
@@ -82,8 +89,8 @@ nav li a {
 }
 
 nav .active {
-    background-color: #003660;
-    color: #ffffff;
+    background-color: var(--lc-maroon);
+    color: var(--lc-lightgray);
     font-weight: bold;
 }
 
@@ -91,7 +98,7 @@ nav .active {
  * so we will make the placeholder the same size */
 #header-placeholder {
     height: 490px;
-    background-color: #003660;
+    background-color: var(--lc-maroon);
 }
 
 
