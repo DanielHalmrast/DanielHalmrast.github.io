@@ -69,13 +69,15 @@ html, body {
 nav {
     height: 80px;
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     background-color: var(--lc-gray);
     box-shadow: 0 0 10px 0 black;
 }
 
 nav * {
-    display: inline-block;
+    display: flex;
+    flex-wrap:nowrap;
 }
 
 nav li {
