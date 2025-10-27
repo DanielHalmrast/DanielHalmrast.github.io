@@ -6,8 +6,8 @@ canvas {
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 300px);
-    grid-template-rows: repeat(3, 300px);
+    grid-template-columns: repeat(3, 250px);
+    grid-template-rows: repeat(3, 250px);
     gap: 10px;
 }
 
