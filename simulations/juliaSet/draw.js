@@ -1,8 +1,9 @@
 var canvas, ctx, image_data;
 var height, width;
+var ASPECT_RATIO = 3.5/2 //default
 
 var julia_helper;
-var MAX_ITER = 90;
+var MAX_ITER = 250;
 
 var final_x_min, final_x_max;
 var final_y_min, final_y_max;
@@ -15,6 +16,7 @@ function setup() {
 	ctx = canvas.getContext("2d");
 	height = canvas.height;
 	width = canvas.width;
+    
 
 	julia_helper = new Julia(MAX_ITER);
 
@@ -25,11 +27,11 @@ function setup() {
 
 function draw() {
 
-	var user_x_min = parseInt(document.getElementById('minx').value);
-	var user_x_max = parseInt(document.getElementById('maxx').value);
-	var user_y_min = parseInt(document.getElementById('miny').value);
-	var user_y_max = parseInt(document.getElementById('maxy').value);
-	var user_exp   = parseInt(document.getElementById('exp').value);
+	var user_x_min  = parseInt(document.getElementById('minx').value);
+	var user_x_max  = parseInt(document.getElementById('maxx').value);
+	var user_y_min  = parseInt(document.getElementById('miny').value);
+	var user_y_max  = parseInt(document.getElementById('maxy').value);
+	var user_exp    = parseInt(document.getElementById('exp').value);
 
 	final_x_min = user_x_min ? user_x_min : -2.5;
 	final_x_max = user_x_max ? user_x_max : 1;
@@ -43,6 +45,8 @@ function draw() {
 
 function drawFrame(x_min, x_max, y_min, y_max, exp) {
 
+    var aspectRatio = (x_max-x_min)/(y_max-y_min);
+    console.log("Aspect ratio: "+aspectRatio);
 	ctx.clearRect(0,0,width,height);
 
 	for(var x=0; x <=width; x++) {
@@ -62,7 +66,7 @@ function drawFrame(x_min, x_max, y_min, y_max, exp) {
 			}
 		}
 		var pct_done = x/(width*1.0)*100;
-		console.log(pct_done + "% done");
+		//console.log(pct_done + "% done");
 		document.getElementById('progress').textContent = pct_done.toString().substring(0,4) + "% done";
 	}
 
@@ -114,15 +118,32 @@ window.onload = function() {
 		rescale_x_max = linearMap(pos.x, 0, width, final_x_min, final_x_max);
 		rescale_y_max = linearMap(pos.y, 0, height, final_y_min, final_y_max);
 
-		console.log("rescaling to (" + rescale_x_min + "," + rescale_x_max + ")x(" + rescale_y_min + "," + rescale_y_max);
+
+
+        //if fixed aspect ratio, we go off of y values only
+        var aspectFixed = document.getElementById('fixAspect').checked;
 
 		//update the final values
-		final_x_min = rescale_x_min;
-		final_x_max = rescale_x_max;
-		final_y_min = rescale_y_min;
-		final_y_max = rescale_y_max;
+        if(aspectFixed) {
+            final_x_min = rescale_x_min;
+            final_y_min = rescale_y_min;
+            final_y_max = rescale_y_max;
+            final_x_max = rescale_x_min + 
+                ASPECT_RATIO*(rescale_y_max - rescale_y_min);
+            console.log("Fixed aspect ratio. Changing xmax from "+rescale_x_max
+                +" to "+final_x_max)
+            console.log("New aspect ratio: "+
+                ((final_x_max-final_x_min)/(final_y_max-final_y_min)))
+            console.log("delta x: "+((final_x_max)-(final_x_min)))
 
-		drawFrame(rescale_x_min, rescale_x_max, rescale_y_min, rescale_y_max, exp);
+        } else {
+            final_x_min = rescale_x_min;
+            final_x_max = rescale_x_max;
+            final_y_min = rescale_y_min;
+            final_y_max = rescale_y_max;
+        }
+
+		drawFrame(final_x_min, final_x_max, final_y_min, final_y_max, exp);
 	}
 
 
