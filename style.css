@@ -122,3 +122,10 @@ nav .active {
     max-width: 100%;
     height: auto;
 }
+
+/* add an external link icon to each tag opening in new tab */
+a[target="_blank"]::after {
+  content: " ↗";
+  font-size: 0.85em;
+  color: gray;
+}
